@@ -1,0 +1,43 @@
+.item-detail-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    gap: 20px;
+  }
+  
+  .item-detail-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+  }
+  
+  .item-detail-content {
+    flex-grow: 1;
+    padding: 10px;
+  }
+  
+  .item-detail-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .item-detail-content p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .item-detail-price {
+    font-weight: bold;
+    font-size: 20px;
+    color: #e63946;
+  }
+  
