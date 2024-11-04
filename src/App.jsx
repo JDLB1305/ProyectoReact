@@ -6,6 +6,10 @@ import Contador from "./components/Ejemplos/Contador"
 import ComponentePadre from "./components/Ejemplos/ComponentePadre"
 import ComponenteHijo from "./components/Ejemplos/ComponenteHijo"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import EjemploContadorId from "./components/Ejemplos/EjemploContadorId"
+import EjemploFormulario from "./components/Ejemplos/EjemploFormulario"
+import { CartContext, CartProvider } from "./context/CartContext"
+import Cart from "./components/Cart/Cart"
 import './App.css'
 
 function App() {
@@ -13,14 +17,18 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <NavBar />
+        <CartProvider> 
+         <NavBar />
 
-        <Routes>
-           <Route path="/" element={<ItemListContainer saludo={"Holaaa, Bienvenido"} /> } /> 
-           <Route path="/category/:idCategory" element={<ItemListContainer saludo={"Holaaa, Bienvenido"} />} />  
-           <Route path="/detail/:idProduct" element={ <ItemDetailContainer />} />
-          {/* <ItemDetailContainer /> */}
-        </Routes>
+         <Routes>
+            <Route path="/" element={<ItemListContainer saludo={"Holaaa, Bienvenido"} /> } /> 
+            <Route path="/category/:idCategory" element={<ItemListContainer saludo={"Holaaa, Bienvenido"} />} />  
+            <Route path="/detail/:idProduct" element={ <ItemDetailContainer />} />
+            <Route path="/ejemplos" element={<EjemploFormulario /> } />
+            <Route path="/carrito" element={<Cart />} />
+           {/* <ItemDetailContainer /> */}
+          </Routes>
+        </CartProvider>
       </BrowserRouter>
 
       {/* <Contador /> */}

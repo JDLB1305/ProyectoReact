@@ -1,0 +1,10 @@
+table thead tr th {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 17px;
+}
+
+table tbody tr td {
+    align-content: center;
+    text-align: center;
+}

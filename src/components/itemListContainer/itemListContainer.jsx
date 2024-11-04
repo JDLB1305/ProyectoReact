@@ -5,14 +5,27 @@ import useProducts from "../../hooks/useProducts.jsx"
 import Loading from "../Loading/Loading.jsx"
 import hocFilterProducts from "../../hoc/hocFilterProducts.jsx"
 import { useParams } from "react-router-dom"
+import Swal from 'sweetalert2';
 import "./itemListContainer.css"
 
 const ItemListContainer = ( { saludo } ) => {
     const [ products, setProducts ] = useState([])
     //const { products, loading } = useProducts()
+    const [loading, setLoading] = useState(true)
     const { idCategory } = useParams()
 
     useEffect(() =>{
+        setLoading(true)
+
+        Swal.fire({
+            title: 'Cargando...',
+            text: 'Por favor espera un momento',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
         getProducts()
             .then((data) => {
                 if (idCategory) {
@@ -26,7 +39,8 @@ const ItemListContainer = ( { saludo } ) => {
                 console.error(error)
             })
             .finally(() => {
-                console.log("finalizo la promesa")
+                setLoading(false)
+                Swal.close();
             })    
     }, [idCategory])
 
@@ -36,7 +50,13 @@ const ItemListContainer = ( { saludo } ) => {
             {/* {
                 loading === true ? <Loading /> : <ItemList products={products} />
             } */}
-            <ItemList products={products} />
+            {
+                loading === true ? (
+                    <div></div>
+                ) : (
+                    <ItemList products={products} />
+                )
+            }
         </div>
     )
 }
