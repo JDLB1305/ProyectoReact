@@ -37,8 +37,8 @@ const Cart = () => {
                             </td>
                             <td>{productCart.name}</td>
                             <td>{productCart.quantity}</td>
-                            <td>${productCart.price.toFixed(2)}</td>
-                            <td>${(productCart.quantity * productCart.price).toFixed(2)}</td>
+                            <td>${productCart.price}</td>
+                            <td>${(productCart.quantity * productCart.price)}</td>
                             <td>
                                 <button onClick={() => deleteProductById(productCart.id)} className="btn btn-danger btn-sm">Eliminar</button>
                             </td>
@@ -49,6 +49,7 @@ const Cart = () => {
             <div className="text-end">
                 <h5>Total Compra: ${totalPrice().toFixed(2)}</h5>
                 <button onClick={deleteCart} className="btn btn-warning">Eliminar Productos</button>
+                <Link to="/checkout" >Terminar Compra</Link>
             </div>
         </div>
     );

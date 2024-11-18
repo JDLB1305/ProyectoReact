@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { getProducts } from "../../data/data"
+import { doc, getDoc } from "firebase/firestore";
+import db from "../../db/db.js"
 import { useParams } from "react-router-dom"
 import ItemDetail from "./ItemDetail"
 import Swal from 'sweetalert2';
@@ -9,9 +10,21 @@ const ItemDetailContainer = () => {
     const [loading, setLoading] = useState(true)
     const { idProduct } = useParams()
 
+    const getProductById =() => {
+      const docRef = doc( db, "products", idProduct )
+      getDoc(docRef)
+        .then((dataDb)=> {
+          const productDb = { id: dataDb.id, ...dataDb.data() }
+
+          setProduct(productDb)
+        })
+
+    }
+
 
     useEffect( ()=> {
-        setLoading(true)
+      getProductById()
+/*         setLoading(true)
 
         Swal.fire({
           title: 'Espera...',
@@ -30,15 +43,11 @@ const ItemDetailContainer = () => {
         .finally(() => {
           setLoading(false) 
           Swal.close();
-        })
+        }) */
     }, [idProduct])
 
   return (
-    <>
-      {
-        loading === true ? ( <div></div> ) : <ItemDetail product={product} />
-      }
-    </>
+    <ItemDetail product={product} />
   )
 }
 

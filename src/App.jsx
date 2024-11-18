@@ -10,6 +10,7 @@ import EjemploContadorId from "./components/Ejemplos/EjemploContadorId"
 import EjemploFormulario from "./components/Ejemplos/EjemploFormulario"
 import { CartContext, CartProvider } from "./context/CartContext"
 import Cart from "./components/Cart/Cart"
+import Checkout from "./components/Checkout/Checkout"
 import './App.css'
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/ejemplos" element={<EjemploFormulario /> } />
             <Route path="/carrito" element={<Cart />} />
            {/* <ItemDetailContainer /> */}
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </CartProvider>
       </BrowserRouter>
